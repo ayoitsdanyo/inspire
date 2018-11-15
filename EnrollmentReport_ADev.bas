@@ -1,44 +1,13 @@
-Attribute VB_Name = "Loop_EnrollmentReport"
-
-Sub LOOPER()
+Attribute VB_Name = "EnrollmentReport_ADev"
+Sub EnrollmentReport_ADev()
+Attribute EnrollmentReport_ADev.VB_ProcData.VB_Invoke_Func = "L\n14"
 '11/15/18 - Finalized for export and team distribution.
 '10/12/18 - Completed localization mechanism. Generalized to main reporting use.
-'08/30/18 - Completed working version of code to parse Gio Friday Reports
-'07/29/2018 - Created duplicate from Loop_DIY to insert AD autoprocessing after weekly reporting on Friday. OBJ: loop through files in 'working' folder and generate new sheet with all AD entries.
-
-Dim MyFolder As String 'Path collected from the folder picker dialog
-Dim MyFile As String 'Filename obtained by DIR function
-Dim wbk As Workbook 'Used to loop through each workbook
-On Error Resume Next
-
-Application.ScreenUpdating = False
-
-'Opens the folder picker dialog to allow user selection
-
-With Application.FileDialog(msoFileDialogFolderPicker)
-.Title = "Please select a folder"
-.Show
-.AllowMultiSelect = False
-    If .SelectedItems.Count = 0 Then    'If no folder is selected, abort
-    MsgBox "You did not select a folder"
-    Exit Sub
-   End If
-   
-MyFolder = .SelectedItems(1) & "\" 'Assign selected folder to MyFolder
-MyFile = Dir(MyFolder) 'DIR gets the first file of the folder
-'Loop through all files in a folder until DIR cannot find anymore
-End With
-
-Do While MyFile <> ""
-   'Opens the file and assigns to the wbk variable for future use
-   Set wbk = Workbooks.Open(FileName:=MyFolder & MyFile)
-
-
-'INSERT DESIRED CODE -------------------------------------------------------------------------------------------
-'---------------------------------------------------------------------------------------------------------------
+'08/28/18 - Creating Macro - implementing vlookup apply and 'Missing Parent'
 
 'Copy in zip ==================================================
 Workbooks.Open "C:\Users\Cristino\Dropbox\Enrollment\.zip.xlsx" 'copy and paste your zip file location into the quotation marks
+
 Worksheets("CA").Range("A1:F2678").Copy
 ActiveWorkbook.Close
 
@@ -238,7 +207,7 @@ RetestCol_2: 'Test replacement column
     i = 1 ' counter step
     'Hides every column unless it is listed in the keep columns string
     'Add or delete column in KeepCols as desired
-    KeepCols = "students_lastname, students_firstname, students_local_id, status,zip, County, gradelevel, created, imported, first_completed_date, Match"
+    KeepCols = "students_lastname, students_firstname, students_local_id, status,zip, County, gradelevel, Match"
     'Checks to see if column is one of the columns to keep or not
     Do While Not Cells(1, i) = ""
         check = InStr(1, KeepCols, Cells(1, i).Value)
@@ -248,20 +217,5 @@ RetestCol_2: 'Test replacement column
     i = i + 1
     Loop
     Range("A1").Select
-
-
-'----------------------------------------- OWN CODE COMPLETED ----------------------------------------------------
-
-'Done with DIY, save file as Excel File
-ActiveWorkbook.SaveAs FileName:=Left((MyFolder & MyFile), Len(MyFolder & MyFile) - 4) & ".xlsx", FileFormat:=51
-wbk.Close savechanges:=True
-
-MyFile = Dir 'DIR gets the next file in the folder
-Loop
-
-Application.ScreenUpdating = True
-MsgBox "Gio's Friday Report Automation COMPLETE. This was fun!"
-
+    
 End Sub
-
-
