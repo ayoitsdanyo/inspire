@@ -1,6 +1,7 @@
 Attribute VB_Name = "EnrollmentReport_BDev"
 Sub EnrollmentReport_BDev()
 
+'12/07/18 - Added additional SPED column titles ahead of SP update (e.g. 7iepdoc)
 '12/01/18 - Adapted macro to Pathways SSR update: replaced county vlookup, added sped/504
 '11/15/18 - Finalized for export and team distribution.
 '10/12/18 - Completed localization mechanism. Generalized to main reporting use.
@@ -20,7 +21,7 @@ Sub EnrollmentReport_BDev()
     'Deletes every column unless it is listed in the keep columns string
     'Add or delete column in KeepCols as desired
     i = 1
-    KeepCols = "students_lastname, students_firstname, students_local_id, status, gradelevel, zip, county, invited, created, imported, latest_note, first_completed_date, first_completed_time, current_completed_date, current_completed_time, special_ed, 504plandocuments, iepdocuments"
+    KeepCols = "students_lastname, students_firstname, students_local_id, status, gradelevel, zip, county, invited, created, imported, latest_note, first_completed_date, first_completed_time, current_completed_date, current_completed_time, special_ed, 504plandocuments, iepdocuments, iep504documents, 4iepdocuments,7504documents,7iepdocuments,6504plandocuments,7iep504documents"
 RetestCol_1:  'Test replacement column
     'Checks to see if column is one of the columns to keep or not
     Do While Not Cells(1, i) = ""
@@ -103,7 +104,7 @@ RetestCol_1:  'Test replacement column
     'Deletes every column unless it is listed in the keep columns string
     'Add or delete column in KeepCols as desired
     i = 1
-    KeepCols = "students_lastname, students_firstname, students_local_id, status, gradelevel, zip, county, invited, created, imported, first_completed_date, first_completed_time, current_completed_date, current_completed_time, special_ed, 504plandocuments, iepdocuments"
+    KeepCols = "students_lastname, students_firstname, students_local_id, status, gradelevel, zip, county, invited, created, imported, first_completed_date, first_completed_time, current_completed_date, current_completed_time, special_ed, 504plandocuments, iepdocuments, iep504documents, 4iepdocuments,7504documents,7iepdocuments,6504plandocuments,7iep504documents"
 RetestCol_2: 'Test replacement column
     'Checks to see if column is one of the columns to keep or not
     Do While Not Cells(1, i) = ""
