@@ -216,7 +216,7 @@ MyFile = Dir 'DIR gets the next file in the folder
 Loop
 
 Application.ScreenUpdating = True
-MsgBox "Gio's Friday Report Automation COMPLETE. This was fun!"
+MsgBox "Enrollment Report Automation COMPLETE. This was fun!"
 
 End Sub
 

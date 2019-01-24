@@ -87,10 +87,16 @@ RetestCol_1:  'Test replacement column
         .Apply
     End With
     
+    'Expand date columns (may change when column orders change)
+    Columns("H:J").Select
+    Range("J1").Activate
+    Columns("H:J").EntireColumn.AutoFit
+    
     'Clears filter from sheet 1
     Sheets(1).Select
     ActiveSheet.ShowAllData
     Range("A1").Select
+
     
 'IMPORT AUDIT ===================================================================
 
